@@ -15,7 +15,7 @@ class SidebarItem2 extends Component
      *
      * @return void
      */
-    public function __construct($label,$href,$routeName='')
+    public function __construct($label,$href="#",$routeName='')
     {
         $this->label=$label;
         $this->href=$href;

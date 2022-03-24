@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- DATA TABLE -->
-                    <h3 class="title-5 m-b-35">Teachers</h3>
+                    <h3 class="title-5 m-b-35">Students</h3>
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
                             <div class="rs-select2--light rs-select2--md">
@@ -34,7 +34,7 @@
                         {{-- general actions --}}
                         <div class="table-data__tool-right">
                             <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addteacher">
-                                <i class="zmdi zmdi-plus"></i>Add Teacher</button>
+                                <i class="zmdi zmdi-plus"></i>Add Student</button>
                             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                 <select class="js-select2" name="type">
                                     <option selected="selected">Export</option>
@@ -64,7 +64,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($teachers as $teacher)
+                                @forelse ($students as $student)
                                 <tr class="tr-shadow">
                                     <td>
                                         <label class="au-checkbox">
@@ -72,9 +72,9 @@
                                             <span class="au-checkmark"></span>
                                         </label>
                                     </td>
-                                    <td>{{$teacher->getFullName()}}</td>
-                                    <td>{{$teacher->username}}</td>
-                                    <td><span class="block-email">{{$teacher->email}}</span></td>
+                                    <td>{{$student->getFullName()}}</td>
+                                    <td>{{$student->username}}</td>
+                                    <td><span class="block-email">{{$student->email}}</span></td>
                                     {{-- <td>
                                         <span class="status--process">Processed</span>
                                     </td> --}}
@@ -86,7 +86,7 @@
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                 <i class="zmdi zmdi-edit"></i>
                                             </button>
-                                            <button class="item del" data-toggle="tooltip" data-placement="top" title="Delete" data-userid="{{$teacher->id}}">
+                                            <button class="item del" data-toggle="tooltip" data-placement="top" title="Delete" data-userid="{{$student->id}}">
                                                 <i class="zmdi zmdi-delete"></i>
                                             </button>
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="More">
@@ -119,7 +119,7 @@
 
     <x-modal id="addteacher" :isForm="true" >
         <x-slot name="header">
-            <h3>Add teacher</h3>
+            <h3>Add Student</h3>
         </x-slot>
         <div class="card-body card-block">
             @csrf
@@ -141,9 +141,9 @@
 @push('scripts')
     <script>
         $('#frmaddteacher').submit((e)=>{
-            e.preventDefault();
+            e.preventDefault()
             $.ajax({
-                url:"{{route('admin.teachers.store')}}",
+                url:"{{route('teacher.students.store')}}",
                 type:'post',
                 data:$('#frmaddteacher').serialize(),
                 success:(res)=>{

@@ -1,5 +1,5 @@
 @extends('layouts.base')
 
 @section('content')
-    <x-alert-message />
+    Quiz
 @endsection

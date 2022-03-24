@@ -7,9 +7,31 @@
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
-                <x-sidebar.sidebar-item label="Dashboard" iconClass="fas fa-tachometer-alt" :href="route('admin.home')" />
-                <x-sidebar.sidebar-item label="Teachers" iconClass="fas fa-user-md" :href="route('teachers.index')" />
-                <x-sidebar.sidebar-item label="Students" iconClass="fas fa-user" :href="route('admin.home')" />
+                @if (auth()->user()->usertype=='admin')
+                <x-sidebar.sidebar-item label="Dashboard" iconClass="fas fa-tachometer-alt" :href="route('admin.home')" routeName="home" />
+                <x-sidebar.sidebar-item label="Principals" iconClass="fas fa-user-md" :href="route('admin.principal.index')" routeName="principal"/>
+                <x-sidebar.sidebar-item label="Teachers" iconClass="fas fa-user-md" :href="route('admin.teachers.index')" />
+                <x-sidebar.sidebar-item label="Students" iconClass="fas fa-tachometer-alt" :href="route('admin.students.index')" />
+                {{-- <x-sidebar.sidebar-item label="Students" iconClass="fas fa-user" :href="route('admin.home')" /> --}}
+                @endif
+                
+                @if (auth()->user()->usertype=='teacher')
+                    <x-sidebar.sidebar-item label="Dashboard" iconClass="fas fa-tachometer-alt" :href="route('teacher.home')"  routeName="home" />
+                    <x-sidebar.sidebar-item label="Students" iconClass="fas fa-tachometer-alt" :href="route('teacher.students.index')" />
+                    <x-sidebar.sidebar-item label="Resources" iconClass="fas fa-tachometer-alt" :hasDropdown="true">
+                        <x-sidebar.sidebar-item2 label="Audio" :href="route('teacher.audio.index')"/>
+                        <x-sidebar.sidebar-item2 label="Video" :href="route('teacher.video.index')"/>
+                        {{-- <x-sidebar.sidebar-item2 label="Games" :href="route('teacher.audio.index')"/>
+                        <x-sidebar.sidebar-item2 label="Quiz" :href="route('teacher.audio.index')"/> --}}
+                    </x-sidebar.sidebar-item>
+                @endif
+
+                
+                @if (auth()->user()->usertype=='principal')
+                <x-sidebar.sidebar-item label="Teachers" iconClass="fas fa-user-md" :href="route('principal.teachers.index')" />
+                <x-sidebar.sidebar-item label="Students" iconClass="fas fa-tachometer-alt" :href="route('principal.students.index')" />
+                @endif
+                
                 {{-- <x-sidebar.sidebar-item label="Dashboard" iconClass="fas fa-tachometer-alt" href="#" :hasDropdown="true" >
                     <x-sidebar.sidebar-item2 label="BD1" :href="route('admin.home')"/>
                 </x-sidebar.sidebar-item> --}}

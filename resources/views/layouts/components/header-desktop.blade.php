@@ -127,7 +127,7 @@
                                 <img src="/images/icon/avatar-01.jpg" alt="John Doe" />
                             </div>
                             <div class="content">
-                                <a class="js-acc-btn" href="#">{{Auth::user()->getFullName()}}</a>
+                                <a class="js-acc-btn" href="#">{{Str::limit(Auth::user()->getFullName(),15)}}</a>
                             </div>
                             <div class="account-dropdown js-dropdown">
                                 <div class="info clearfix">
@@ -136,7 +136,7 @@
                                             <img src="/images/icon/avatar-01.jpg" alt="John Doe" />
                                         </a>
                                     </div>
-                                    <div class="content">
+                                    <div class="content text-center">
                                         <h5 class="name">
                                             <a href="#">{{Auth::user()->getFullName()}}</a>
                                         </h5>

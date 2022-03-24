@@ -7,14 +7,18 @@ use Illuminate\View\Component;
 class Modal extends Component
 {
     public $id;
+    public $isForm;
+    public $formMethod;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($id)
+    public function __construct($id,$isForm=false,$formMethod='post')
     {
         $this->id=$id;
+        $this->isForm=$isForm;
+        $this->formMethod=$formMethod;
     }
 
     /**

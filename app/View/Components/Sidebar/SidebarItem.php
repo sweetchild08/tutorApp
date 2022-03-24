@@ -19,16 +19,17 @@ class SidebarItem extends Component
      */
     public function __construct( 
         $label,
-        $href,
         $iconClass,
+        $href='#',
         $hasDropdown=false,
-        $routeName='')
+        $routeName=null)
     {
         $this->label=$label;
         $this->href=$href;
         $this->iconClass=$iconClass;
         $this->hasDropdown=$hasDropdown;
-        $this->routeName=$routeName==''?$label:$routeName;
+        $this->routeName=$routeName??$label;
+        $this->routeName=strtolower($this->routeName);
     }
 
     /**
@@ -39,7 +40,7 @@ class SidebarItem extends Component
     public function render()
     {
         return <<<'blade'
-                <li class="@if(strpos(Route::currentRouteName(),$routeName)!==-1) active @endif  @if($hasDropdown) has-sub @endif">
+                <li class="@if(strpos(Route::currentRouteName(),$routeName)!==false) active @endif  @if($hasDropdown) has-sub @endif">
                     <a href="{{$href}}" class="@if($hasDropdown) js-arrow @endif" >
                     <i class="{{$iconClass}}"></i>{{$label}}</a>
                     @if($hasDropdown)
